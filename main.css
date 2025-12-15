@@ -1,0 +1,385 @@
+:root{
+    --background-colour: #f9fafb;
+    --footer-bg: #f9fafb9f;
+    --text1: #101011;
+    --text2: #38393d;
+    --text3: #858793;
+    --highlight: #dae9f1;
+    --text-highlight: #197feb;
+
+    --hover-border: #e8e8e8;
+    --hover-shadow: #9a9ea571;
+    --hover-inset: #ffffff;
+    --hover-background: #ffffffb3;
+    --listening: #07a056;
+
+}
+
+/* 🌙 Alternate theme */
+html[data-theme="alt"]{
+    --background-colour: #0f0f15;
+    --footer-bg: #0f0f1594;
+    --text1: #f2f2f7;
+    --text2: #bfc4d0;
+    --text3: #727e9a;
+    --highlight: #3a4de1;
+    --text-highlight: #08053a;
+
+    --hover-border: #13131b;
+    --hover-shadow: rgb(0, 0, 0);
+    --hover-inset: #333341;
+    --hover-background: #1f1f348e;
+}
+
+
+::selection{
+    background-color: var(--highlight);
+    color: var(--text-highlight);
+}
+
+*{
+    font-family: "Figtree", sans-serif;
+}
+
+body{
+    background-color: var(--background-colour);
+}
+
+/* Heading Styling */
+h1{
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text1);
+    margin-bottom: 0rem;
+}
+
+h2{
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 0rem;
+    color: var(--text3);
+}
+
+p{
+    font-weight: 380;
+    color: var(--text2);
+    z-index: 2;
+    font-size: 2rem;
+}
+
+/* Main content styling */
+.main-content{
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-content{
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
+
+.name-content{
+    margin-bottom: 6rem;
+}
+
+video{
+    max-width: 100%;
+}
+
+/* Links and hover effect */
+.inline-link{
+    position: relative;          
+    display: inline-block;       
+    color: var(--text3);
+    text-decoration: none;     
+    z-index: 1;                
+    transition: color 0.2s ease;
+}
+
+.inline-link::before,
+.tool-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 0.01rem solid var(--hover-border);
+    background-color: var(--hover-background);
+    border-radius: 0.75rem;
+    opacity: 0; /* hidden by default */
+    pointer-events: none;
+    z-index: -1;
+    filter: drop-shadow(0 0.2rem 0.2rem var(--hover-shadow));
+    box-shadow: inset 0 0.1rem 0.05rem var(--hover-inset),
+                inset 0 -0.1rem 0.05rem var(--hover-inset);
+    transform: scale(0.95) translate(var(--hover-translate-x, 0), var(--hover-translate-y, 0));
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(0.1rem);
+}
+
+/* Only show hover effect when JS adds .hover-active */
+.hover-active::before {
+    opacity: 1;
+    transform: scale(1.1) translate(var(--hover-translate-x, 0), var(--hover-translate-y, 0));
+}
+
+/* Remove hover effect on click */
+.tool-btn:active::before,
+.inline-link:active::before {
+    opacity: 0;
+    transform: scale(0.95) translate(0, 0);
+}
+
+/* Link color changes */
+.inline-link.hover-active {
+    color: var(--text1);
+}
+
+.inline-link .link-arrow{
+    position: absolute;
+    top: 0.2rem;
+    transition: transform 0.2s ease;
+}
+
+.inline-link.hover-active .link-arrow{
+    transform: rotate(45deg);
+}
+
+.inline-link path{
+    fill: var(--text3);
+}
+
+.inline-link.hover-active path{
+    fill: var(--text1);
+}
+
+/* footer */
+
+#cover{
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    width: 4rem;
+    border-radius: 0.3rem;
+    border: 0.01rem solid var(--hover-border);
+}
+#song{
+    font-size: 1rem;
+    font-weight: 550;
+    color: var(--text1);
+    display: inline-block;
+    margin-bottom: 0;
+}
+#artist{
+    font-size: 1rem;
+    margin-top: 0.1rem;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-left: 1rem;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.music-section{
+    display: flex;
+    max-width: fit-content;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+#timeAgo{
+    font-size: 1rem;
+    margin-top: 0.1rem;
+    position: relative;
+    color: var(--text2);
+    transition: color 0.25s ease;
+}
+
+#timeAgo::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background-color: var(--listening);
+  transform: translateY(-50%) scale(0);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#timeAgo.listening {
+    color: var(--listening);
+    padding-left: 1.2em;
+}
+
+#timeAgo.listening::before {
+  opacity: 1;
+  animation: pulseDot 1.5s cubic-bezier(.4,0,.2,1) infinite;
+}
+
+.music-box{
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    max-width: fit-content;
+}
+
+.music-arrow{
+    right: 1rem;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--footer-bg);
+    margin: 0;
+    padding: 0;
+    z-index: 999;
+    height: 8rem;
+    backdrop-filter: blur(0.4rem);
+}
+
+#seasonEmoji {
+  margin-right: 0.5em;
+  font-size: 1.2rem;
+  display: inline-block;
+  text-align: right;
+  vertical-align: middle;
+}
+
+#pstTime{
+    font-size: 1rem;
+    font-weight: 550;
+    color: var(--text2);
+    align-items: center;
+    margin-bottom: 0rem;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.footer-text{
+    font-size: 1rem;
+    margin-top: 0.25rem;
+    text-align: right;
+    color: var(--text3);
+    display: block;
+}
+
+.left-foot{
+    max-width: fit-content;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+#drawCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+#drawControls {
+  display: none; /* hide by default */
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  z-index: 1001;
+  gap: 0.5rem;
+  display: flex; /* only needed when showing */
+}
+
+#drawCanvas.hidden {
+  opacity: 0;
+}
+
+/* Tool buttons */
+.tool-btn {
+    position: relative;           /* required for pseudo-element */
+    display: inline-flex;         
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border-radius: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    overflow: visible;
+    transition: all 0.15s ease, transform 0.1s ease;
+    z-index: 1;
+}
+
+.tool-btn.active path {
+    fill: var(--text1);
+}
+
+.tool-btn.active {
+    border: 0.1rem solid var(--hover-border);
+}
+
+#drawToggle svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Centered controls container */
+.decoration-controls {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: solid 0.1rem var(--hover-border);
+    box-shadow: inset 0 0.1rem 0.05rem var(--hover-inset),
+                inset 0 -0.1rem 0.05rem var(--hover-inset);
+}
+
+.tool-btn path{
+    fill: var(--text3);
+    transition: all 0.3s;
+}
+
+.tool-btn:hover path{
+    fill: var(--text1);
+}
+
+/* Pulse animation */
+@keyframes pulseDot {
+  0% {
+    transform: translateY(-50%) scale(0.85);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50%) scale(0.85);
+    opacity: 1;
+  }
+}
