@@ -41,6 +41,23 @@
 
     </section>
 
+    <div id="drawPopup">
+        <canvas id="drawCanvas"></canvas>
+        <div id="drawControls" hidden>
+            <button id="drawBtn" class="tool-btn active" aria-label="Draw">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 16L8.5 7H10V5.5L11.5 2H12.5L14 5.5V7H15.5L18 16H6ZM8.625 14H15.375L13.975 9H10.025L8.625 14ZM4 21L4.55 19.375C4.68333 18.9583 4.925 18.625 5.275 18.375C5.625 18.125 6.01667 18 6.45 18H17.55C17.9833 18 18.375 18.125 18.725 18.375C19.075 18.625 19.3167 18.9583 19.45 19.375L20 21H4Z" fill="#1C1B1F"/>
+                </svg>
+            </button>
+            <button id="eraserBtn" class="tool-btn" aria-label="Erase">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M17.2128 18H21.9628V20H15.2128L17.2128 18ZM4.71277 20L2.58777 17.875C2.20443 17.4917 2.0086 17.0167 2.00027 16.45C1.99193 15.8833 2.17943 15.4 2.56277 15L13.5628 3.6C13.9461 3.2 14.4169 3 14.9753 3C15.5336 3 16.0044 3.19167 16.3878 3.575L21.3628 8.55C21.7461 8.93333 21.9378 9.40833 21.9378 9.975C21.9378 10.5417 21.7461 11.0167 21.3628 11.4L12.9628 20H4.71277ZM12.1128 18L19.9628 9.95L15.0128 5L3.96277 16.4L5.56277 18H12.1128Z" fill="#1C1B1F"/>
+                </svg>
+            </button>
+            <button id="clearBtn" class="tool-btn" aria-label="Clear">Reset</button>
+        </div>
+    </div>
+
 
 
     <footer>
@@ -61,11 +78,10 @@
 
             <p class="footer-text">Last updated Dec. 2025</p>
         </div>
-
         <div class="decoration-controls">
             <button id="drawToggle" class="tool-btn" aria-label="Toggle drawing">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 18 18" fill="none">
-                <path d="M2 16H3.425L13.2 6.225L11.775 4.8L2 14.575V16ZM0 18V13.75L13.2 0.575C13.4 0.391667 13.6208 0.25 13.8625 0.15C14.1042 0.05 14.3583 0 14.625 0C14.8917 0 15.15 0.05 15.4 0.15C15.65 0.25 15.8667 0.4 16.05 0.6L17.425 2C17.625 2.18333 17.7708 2.4 17.8625 2.65C17.9542 2.9 18 3.15 18 3.4C18 3.66667 17.9542 3.92083 17.8625 4.1625C17.7708 4.40417 17.625 4.625 17.425 4.825L4.25 18H0ZM12.475 5.525L11.775 4.8L13.2 6.225L12.475 5.525Z" fill="#1C1B1F"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M3.41947 22.7753C2.75412 22.7753 2.18453 22.5384 1.71072 22.0645C1.23691 21.5907 1 21.0212 1 20.3558V3.41947C1 2.75412 1.23691 2.18453 1.71072 1.71072C2.18453 1.23691 2.75412 1 3.41947 1H13.0974V3.41947H3.41947V20.3558H20.3558V10.6779H22.7753V20.3558C22.7753 21.0212 22.5384 21.5907 22.0645 22.0645C21.5907 22.5384 21.0212 22.7753 20.3558 22.7753H3.41947ZM4.62921 17.9363H19.1461L14.6095 11.8876L10.9803 16.7266L8.25842 13.0974L4.62921 17.9363ZM17.9363 8.25842V5.83895H15.5168V3.41947H17.9363V1H20.3558V3.41947H22.7753V5.83895H20.3558V8.25842H17.9363Z" fill="#1C1B1F"/>
                 </svg>
             </button>
             <button id="themeToggle" class="tool-btn" aria-label="Toggle theme switch">
@@ -75,21 +91,7 @@
             </button>
         </div>
 
-
-
     </footer>
-
-
-
-    <div id="drawControls" hidden>
-        <button id="drawBtn" class="tool-btn active" aria-label="Draw">✏️</button>
-        <button id="eraserBtn" class="tool-btn" aria-label="Erase">🧽</button>
-        <button id="clearBtn" class="tool-btn" aria-label="Clear">🗑️</button>
-    </div>
-
-
-
-    <canvas id="drawCanvas"></canvas>
 
 
     <script src="scripts.js"></script>

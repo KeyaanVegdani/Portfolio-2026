@@ -285,59 +285,93 @@ footer{
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
 }
-
-#drawCanvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+/* Centered square drawing popup */
+#drawPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;       /* square width */
+  height: 400px;      /* square height */
+  background-color: var(--background-colour);
+  border: solid 0.1rem var(--hover-border);
+  box-shadow: inset 0 0.1rem 0.05rem var(--hover-inset), inset 0 -0.1rem 0.05rem var(--hover-inset);
+  border-radius: 1rem;
+  display: none;      /* hidden by default */
   z-index: 1000;
 }
 
-#drawControls {
-  display: none; /* hide by default */
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  z-index: 1001;
-  gap: 0.5rem;
-  display: flex; /* only needed when showing */
+#clearBtn{
+    color: var(--text3);
+}
+#clearBtn:hover{
+    color: var(--text1);
 }
 
-#drawCanvas.hidden {
-  opacity: 0;
+/* Canvas fills the popup */
+#drawCanvas {
+  width: 100%;
+  height: 100%;
+  position: relative; 
+  border-radius: 1rem;
+  pointer-events: none; /* disabled until toggle */
+  touch-action: none;
+}
+
+#drawCanvas.active {
+  pointer-events: auto; /* enable drawing */
+}
+
+/* Controls below canvas */
+#drawControls {
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
+  bottom: 1rem; /* adjust below canvas */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: solid 0.1rem var(--hover-border);
+  box-shadow: inset 0 0.1rem 0.05rem var(--hover-inset), inset 0 -0.1rem 0.05rem var(--hover-inset);
+  background-color: var(--background-colour);
 }
 
 /* Tool buttons */
 .tool-btn {
-    position: relative;           /* required for pseudo-element */
-    display: inline-flex;         
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    padding: 0;
-    border-radius: 0.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    overflow: visible;
-    transition: all 0.15s ease, transform 0.1s ease;
-    z-index: 1;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border-radius: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  overflow: visible;
+  transition: all 0.15s ease, transform 0.1s ease;
+  z-index: 1;
 }
 
 .tool-btn.active path {
-    fill: var(--text1);
+  fill: var(--text1);
 }
 
 .tool-btn.active {
-    border: 0.1rem solid var(--hover-border);
+  border: 0.1rem solid var(--hover-border);
 }
+
+.tool-btn path{
+  fill: var(--text3);
+  transition: all 0.3s;
+}
+
+.tool-btn:hover path{
+  fill: var(--text1);
+}
+
 
 #drawToggle svg {
     width: 1.5rem;
@@ -359,14 +393,6 @@ footer{
                 inset 0 -0.1rem 0.05rem var(--hover-inset);
 }
 
-.tool-btn path{
-    fill: var(--text3);
-    transition: all 0.3s;
-}
-
-.tool-btn:hover path{
-    fill: var(--text1);
-}
 
 /* Pulse animation */
 @keyframes pulseDot {
